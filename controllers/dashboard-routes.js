@@ -34,13 +34,13 @@ router.get('/', withAuth, async (req, res) => {
     }
 })
 
-router.get('edit/:id', withAuth, async (req, res) => {
+router.get('/edit/:id', withAuth, async (req, res) => {
     try {
         const singlePostData = await Post.findOne({
             where: {
                 id: req.params.id
             },
-            attributes: ['id', 'text', 'post_id', 'user_id', 'created_at'],
+            attributes: ['id', 'text', 'title', 'user_id', 'created_at'],
             include: {
                 model: User,
                 attributes: ['username']
@@ -55,7 +55,7 @@ router.get('edit/:id', withAuth, async (req, res) => {
 
         const post = singlePostData.get({ plain: true })
         res.render('edit-post', {
-            post,
+            post: post,
             loggedIn: req.session.loggedIn
         })
 
