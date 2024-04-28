@@ -29,31 +29,31 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.get('/post/id', async (req, res) => {
-    try {
-        const postData = await Post.findOne({
-            where: {
-                id: req.params.id
-            },
-            attributes: postAttributes,
-            include: includedPostData
-        })
+// router.get('/post/id', async (req, res) => {
+//     try {
+//         const postData = await Post.findOne({
+//             where: {
+//                 id: req.params.id
+//             },
+//             attributes: postAttributes,
+//             include: includedPostData
+//         })
 
-        if (!postData) {
-            res.status(400).json({message: "No post with provided ID found"})
-        }
+//         if (!postData) {
+//             res.status(400).json({message: "No post with provided ID found"})
+//         }
 
-        const data = postData.get({plain: true})
+//         const data = postData.get({plain: true})
 
-        res.render("individual-post", {
-            data,
-            loggedIn: res.session.loggedIn
-        })
-    } catch {err} {
-        res.status(500).json(err)
-    }
+//         res.render("individual-post", {
+//             data,
+//             loggedIn: res.session.loggedIn
+//         })
+//     } catch {err} {
+//         res.status(500).json(err)
+//     }
 
-})
+// })
 
 
 const includedPostData = [
