@@ -17,7 +17,7 @@ async function signup(event) {
         })
 
         if (response.ok) {
-            document.location.replace('/homepage')
+            document.location.replace('/')
         } else {
             alert("Sign Up failed")
         } 

@@ -3,7 +3,7 @@
 {{#if loggedIn}}
 <form class="comment-form">
   <div>
-    <textarea name="comment-body"></textarea>
+    <textarea id="comment-text" data-id="{{post.id}}" name="comment-body"></textarea>
   </div>
 
   <div>

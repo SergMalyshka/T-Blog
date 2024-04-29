@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(500).json(err)
     }
-
 })
 
 router.get('/login', (req, res) => {
@@ -36,37 +35,7 @@ router.get('/post/:id', async (req, res) => {
                 id: req.params.id
             },
             attributes: postAttributes,
-            include: includedPostData
-        })
-
-        if (!response) {
-            res.status(400).json({ message: "No post with provided ID found" })
-        }
-
-        const data = response.get({ plain: true })
-
-        res.render('individual-post', {
-            post: data,
-            loggedIn: req.session.loggedIn
-        })
-    } catch (err) {
-        res.status(500).json(err)
-    }
-
-})
-
-router.get('/post/:id', (req, res) => {
-    Post.findOne({
-        where: {
-            id: req.params.id
-        },
-        attributes: [
-            'id',
-            'title',
-            'text',
-            'created_at'
-        ],
-        include: [
+            include: [
             {
                 model: Comment,
                 attributes: [
@@ -86,27 +55,23 @@ router.get('/post/:id', (req, res) => {
                 attributes: ['username']
             }
         ]
-    })
-        .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({ message: 'No Post found with this id' });
-                return;
-            }
-            //serialize the data
-            const post = dbPostData.get({ plain: true });
-
-            //pass data to the template
-            res.render('individual-post', {
-                post,
-                loggedIn: req.session.loggedIn
-            });
         })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
 
+        if (!response) {
+            res.status(400).json({ message: "No post with provided ID found" })
+        }
+
+        const data = response.get({ plain: true })
+
+        res.render('individual-post', {
+            post: data,
+            loggedIn: req.session.loggedIn
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+
+})
 
 
 const includedPostData = [
