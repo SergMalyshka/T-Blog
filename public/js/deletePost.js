@@ -2,6 +2,7 @@ async function deletePost(event) {
     event.preventDefault();
 
     const id = document.getElementById('submit').dataset.id
+    console.log(id)
 
     const response = await fetch(`/api/posts/${id}`, {
         method: 'DELETE'

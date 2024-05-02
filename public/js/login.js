@@ -21,7 +21,6 @@ async function signup(event) {
         } else {
             alert("Sign Up failed")
         } 
-        
     }
 }
 

@@ -1,24 +1,21 @@
-<article>
-  <h2>
-    Edit Post
-  </h2>
-  <form id="updatePost">
-    <div>
-      <input id="post-title" name="post-title" type="text" value="{{post.title}}" />
-    </div>
-    <div>
-      Posted by you on {{formatDate post.created_at}}
-      |
-      {{post.comments.length}} {{pluralCheck "comment" post.comments.length}}
-    </div>
-    <div>
-      <label for="post-text">Post</label>
-      <textarea id="post-text" name="post-text">{{post.text}}</textarea>
-    </div>
-    <button type="submit">Save Changes</button>
-    <button id="submit" type="button" data-id="{{post.id}}" class="delete-post-btn">Delete Post</button>
-  </form>
-</article>
+<div class="card" style="width:auto">
+  <div class="card-body">
+    <article>
+      <form id="updatePost">
+        <h3>Post Title</h3>
+        <div>
+          <input id="post-title" name="post-title" type="text" value="{{post.title}}" />
+        </div>
+        <div>
+          <label for="post-text">Content</label>
+          <textarea id="post-text" name="post-text">{{post.text}}</textarea>
+        </div>
+        <button class="btn btn-warning buttons" type="submit">Save Changes</button>
+        <button id="submit" type="button" data-id="{{post.id}}" class="btn btn-danger buttons">Delete Post</button>
+      </form>
+    </article>
+  </div>
+</div>
 
 
 <script src="/js/editPost.js"></script>

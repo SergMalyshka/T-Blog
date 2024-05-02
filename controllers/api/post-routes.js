@@ -37,12 +37,18 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', withAuth, async (req, res) => {
+
+    console.log(req.body)
+    console.log(req.session.user_id)
+
     try {
         const response = await Post.create({
             title: req.body.title,
             text: req.body.text,
             user_id: req.session.user_id
         })
+
+        console.log(response)
 
         if (response) {
             res.json(response)
@@ -80,12 +86,15 @@ router.put('/:id', withAuth, async (req, res) => {
 
 
 router.delete("/:id", withAuth, async (req, res) => {
+
     try {
         const response = await Post.destroy({
             where: {
                 id: req.params.id
             }
         })
+
+        console.log(response)
 
         if (response) {
             res.json(response)

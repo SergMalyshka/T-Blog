@@ -1,18 +1,19 @@
 {{> homepage-posts post}}
+{{> comment post.comments}}
 
 {{#if loggedIn}}
+<h3>Add a Comment</h3>
 <form class="comment-form">
   <div>
     <textarea id="comment-text" data-id="{{post.id}}" name="comment-body"></textarea>
   </div>
 
   <div>
-    <button type="submit">add comment</button>    
+    <button class="btn btn-warning buttons"type="submit">add comment</button>    
   </div>
 </form>
 {{/if}}
 
-{{> comment post.comments}}
 
 {{#if loggedIn}}
 <script src="/js/comment.js"></script>
